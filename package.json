@@ -5,8 +5,10 @@
   "main": "app.js",
   "author": "Gunpowderman <adel.baroody@gmail.com>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js"
   }
 }
