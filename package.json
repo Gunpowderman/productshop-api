@@ -1,0 +1,12 @@
+{
+  "name": "productshop-api",
+  "version": "1.0.0",
+  "description": "coded express practice",
+  "main": "app.js",
+  "author": "Gunpowderman <adel.baroody@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
