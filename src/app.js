@@ -1,13 +1,24 @@
 const express = require("express");
+const cors = require("cors");
 
-const message = "hello";
+let data = require("./data");
 
 const app = express();
+app.use(cors());
 
-app.get("/", (request, response) => {
-  console.log("heard");
+app.get("/products", (_, response) => {
+  response.json(data);
+});
 
-  response.end("hi");
+app.delete("/products/:productId", (request, response) => {
+  const { productId } = request.params;
+  const foundProduct = data.find((product) => product.id === +productId);
+  if (foundProduct) {
+    data = data.filter((product) => product !== foundProduct);
+    response.status(204).end();
+  } else {
+    response.status(404).json({ message: "Product not found" });
+  }
 });
 
 app.listen(8000, () => {
