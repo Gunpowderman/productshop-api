@@ -5,31 +5,19 @@ const slugify = require("slugify");
 
 //imports
 let data = require("../data");
+const {
+  productList,
+  createProduct,
+  deleteProduct,
+} = require("../controllers/productsController");
 
 //get product data
-router.get("/", (_, response) => {
-  response.json(data);
-});
+router.get("/", productList);
 
 //create product
-router.post("/", (request, response) => {
-  const id = data[data.length - 1].id + 1;
-  const slug = slugify(request.body.name, { lower: true });
-  const newProduct = { id, slug, ...request.body };
-  data.push(newProduct);
-  response.status(201).json(newProduct);
-});
+router.post("/", createProduct);
 
 //delete product
-router.delete("/:productId", (request, response) => {
-  const { productId } = request.params;
-  const foundProduct = data.find((product) => product.id === +productId);
-  if (foundProduct) {
-    data = data.filter((product) => product !== foundProduct);
-    response.status(204).end();
-  } else {
-    response.status(404).json({ message: "Product not found" });
-  }
-});
+router.delete("/:productId", deleteProduct);
 
 module.exports = router;
