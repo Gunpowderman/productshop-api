@@ -1,10 +1,8 @@
 //dependancies
 const express = require("express");
 const router = express.Router();
-const slugify = require("slugify");
 
 //imports
-let data = require("../data");
 const {
   productList,
   createProduct,
